@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Avatar,
   Button,
@@ -147,7 +148,9 @@ const Auth = () => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link variant="body2">Forgot password?</Link>
+              <Link component={RouterLink} to="/reset_password" variant="body2">
+                Forgot password?
+              </Link>
             </Grid>
             <Grid item>
               <Link variant="body2" onClick={() => setIsLogin(!isLogin)}>

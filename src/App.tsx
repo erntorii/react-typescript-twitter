@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import styles from "./App.module.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser, login, logout } from "./features/userSlice";
 import { auth } from "./firebase";
 
 import Feed from "./components/Feed";
 import Auth from "./components/Auth";
+import ResetPassword from "./components/ResetPassword";
 
 const App = () => {
   const user = useSelector(selectUser);
@@ -35,7 +36,13 @@ const App = () => {
   return (
     <div>
       <Switch>
-        <Route path="/">{user.uid ? <Feed /> : <Auth />}</Route>
+        <Route exact path="/">
+          {user.uid ? <Feed /> : <Auth />}
+        </Route>
+        <Route path="/reset_password">
+          <ResetPassword />
+        </Route>
+        <Redirect to="/" />
       </Switch>
     </div>
   );
