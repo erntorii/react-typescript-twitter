@@ -147,16 +147,10 @@ const Auth = () => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+              <Link variant="body2">Forgot password?</Link>
             </Grid>
             <Grid item>
-              <Link
-                href="#"
-                variant="body2"
-                onClick={() => setIsLogin(!isLogin)}
-              >
+              <Link variant="body2" onClick={() => setIsLogin(!isLogin)}>
                 {isLogin ? "Create new account ?" : "Back to Sign In"}
               </Link>
             </Grid>
