@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 const Feed = () => {
   return (
     <div>
-      <button onClick={() => auth.signOut()}>Sing Out</button>
+      <button onClick={() => auth.signOut()}>Sign Out</button>
     </div>
   );
 };
