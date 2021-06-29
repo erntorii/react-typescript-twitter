@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from "./App.module.css";
+import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser, login, logout } from "./features/userSlice";
@@ -34,7 +34,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="app">
       <Switch>
         <Route exact path="/">
           {user.uid ? <Feed /> : <Auth />}
