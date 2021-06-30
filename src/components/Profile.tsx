@@ -29,7 +29,7 @@ const Profile = () => {
   };
 
   const updateProfile = async () => {
-    let avatarUrl = "";
+    let avatarUrl = auth.currentUser?.photoURL ?? "";
     if (avatarImage) {
       auth.currentUser?.photoURL &&
         storage.refFromURL(auth.currentUser?.photoURL).delete();
