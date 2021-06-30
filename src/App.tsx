@@ -5,9 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUser, login, logout } from "./features/userSlice";
 import { auth } from "./firebase";
 
+import Sidebar from "./components/Sidebar";
 import Feed from "./components/Feed";
 import Auth from "./components/Auth";
 import ResetPassword from "./components/ResetPassword";
+import Profile from "./components/Profile";
 
 const App = () => {
   const user = useSelector(selectUser);
@@ -34,17 +36,28 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="app">
-      <Switch>
-        <Route exact path="/">
-          {user.uid ? <Feed /> : <Auth />}
-        </Route>
-        <Route path="/reset_password">
-          <ResetPassword />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
-    </div>
+    <Switch>
+      {user.uid ? (
+        <div className="app">
+          <Sidebar />
+          <Route exact path="/">
+            <Feed />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+        </div>
+      ) : (
+        <>
+          <Route exact path="/">
+            <Auth />
+          </Route>
+          <Route path="/reset_password">
+            <ResetPassword />
+          </Route>
+        </>
+      )}
+    </Switch>
   );
 };
 
