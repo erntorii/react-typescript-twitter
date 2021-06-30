@@ -29,20 +29,22 @@ const Profile = () => {
   };
 
   const updateProfile = async () => {
-    let url = "";
+    let avatarUrl = "";
     if (avatarImage) {
+      auth.currentUser?.photoURL &&
+        storage.refFromURL(auth.currentUser?.photoURL).delete();
       const fileName = uuid() + "_" + avatarImage.name;
       await storage.ref(`avatars/${fileName}`).put(avatarImage);
-      url = await storage.ref(`avatars/${fileName}`).getDownloadURL();
+      avatarUrl = await storage.ref(`avatars/${fileName}`).getDownloadURL();
     }
     await auth.currentUser?.updateProfile({
       displayName: username,
-      photoURL: url,
+      photoURL: avatarUrl,
     });
     dispatch(
       updateUserProfile({
         displayName: username,
-        photoUrl: url,
+        photoUrl: avatarUrl,
       })
     );
   };
