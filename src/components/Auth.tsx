@@ -17,6 +17,8 @@ import Typography from "@material-ui/core/Typography";
 import { auth, provider } from "../firebase";
 import firebase from "firebase/app";
 import "firebase/auth";
+import { useDispatch } from "react-redux";
+import { updateUserProfile } from "../features/userSlice";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Auth = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRemember, setIsRemember] = useState(false);
@@ -51,9 +55,16 @@ const Auth = () => {
       .catch((err) => alert(err.message));
   };
   const signUpEmail = async () => {
-    await auth
-      .createUserWithEmailAndPassword(email, password)
-      .catch((err) => alert(err.message));
+    const authUser = await auth.createUserWithEmailAndPassword(email, password);
+    await authUser.user?.updateProfile({
+      displayName: username,
+    });
+    dispatch(
+      updateUserProfile({
+        displayName: username,
+        photoUrl: "",
+      })
+    );
   };
 
   const signInGoogle = async () => {
@@ -82,6 +93,20 @@ const Auth = () => {
           {isLogin ? "Sign in" : "Sign up"}
         </Typography>
         <form className={classes.form} noValidate>
+          {!isLogin && (
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoFocus
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          )}
           <TextField
             variant="outlined"
             margin="normal"
@@ -91,7 +116,6 @@ const Auth = () => {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -119,12 +143,26 @@ const Auth = () => {
             label="Remember me"
           />
           <Button
-            disabled={email === "" || password === ""}
+            disabled={
+              isLogin
+                ? !email || password.length < 6
+                : !username || !email || password.length < 6
+            }
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={isLogin ? signInEmail : signUpEmail}
+            onClick={
+              isLogin
+                ? async () => {
+                    try {
+                      await signInEmail();
+                    } catch (err) {
+                      alert(err.message);
+                    }
+                  }
+                : signUpEmail
+            }
           >
             {isLogin ? "Sign In" : "Sign Up"}
           </Button>

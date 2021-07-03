@@ -1,12 +1,12 @@
 import React from "react";
 import { auth } from "../firebase";
-import Sidebar from "./Sidebar";
+import TweetBox from "./TweetBox";
 
 const Feed = () => {
   return (
     <div>
       <button onClick={() => auth.signOut()}>Sign Out</button>
-      <Sidebar />
+      <TweetBox />
     </div>
   );
 };
