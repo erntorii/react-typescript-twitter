@@ -1,11 +1,14 @@
 import React from "react";
 import { auth } from "../firebase";
 import TweetBox from "./TweetBox";
+import "./Feed.css";
 
 const Feed = () => {
   return (
-    <div>
-      <button onClick={() => auth.signOut()}>Sign Out</button>
+    <div className="feed">
+      <div className="feed__header">
+        <h2>Home</h2>
+      </div>
       <TweetBox />
     </div>
   );
