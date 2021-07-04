@@ -33,7 +33,7 @@ const ResetPassword = () => {
     await auth
       .sendPasswordResetEmail(resetEmail)
       .then(() => {
-        alert("パスワード再設定メールを送信しました。");
+        alert("Password reset email has been sent.");
         setResetEmail("");
       })
       .catch((err) => {
