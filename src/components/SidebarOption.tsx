@@ -6,17 +6,17 @@ type Props = {
   text: string;
   Icon: ReactElement;
   active?: boolean;
-  home?: boolean;
+  path?: string;
 };
 
-const SidebarOption = ({ text, Icon, active, home }: Props) => {
+const SidebarOption = ({ text, Icon, active, path }: Props) => {
   const history = useHistory();
 
   return (
     <div
       className={`sidebarOption  ${active && "sidebarOption--active"}`}
       onClick={() => {
-        home && history.push("/");
+        path && history.push(path);
       }}
     >
       {Icon}

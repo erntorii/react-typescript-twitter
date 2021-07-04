@@ -71,7 +71,16 @@ const Auth = () => {
     await auth.signInWithPopup(provider).catch((err) => alert(err.message));
   };
   const signInAnonymous = async () => {
-    await auth.signInAnonymously().catch((err) => alert(err.message));
+    const authUser = await auth.signInAnonymously();
+    await authUser.user?.updateProfile({
+      displayName: "Guest",
+    });
+    dispatch(
+      updateUserProfile({
+        displayName: "Guest",
+        photoUrl: "",
+      })
+    );
   };
 
   const session = async () => {
@@ -154,14 +163,9 @@ const Auth = () => {
             className={classes.submit}
             onClick={
               isLogin
-                ? async () => {
-                    try {
-                      await signInEmail();
-                    } catch (err) {
-                      alert(err.message);
-                    }
-                  }
-                : signUpEmail
+                ? signInEmail
+                : async () =>
+                    await signUpEmail().catch((err) => alert(err.message))
             }
           >
             {isLogin ? "Sign In" : "Sign Up"}
@@ -180,7 +184,9 @@ const Auth = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={signInAnonymous}
+            onClick={async () =>
+              await signInAnonymous().catch((err) => alert(err.message))
+            }
           >
             SignIn as a Guest
           </Button>

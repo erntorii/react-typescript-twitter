@@ -19,7 +19,7 @@ import { auth } from "../firebase";
 
 const Sidebar = () => {
   const user = useSelector(selectUser);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const history = useHistory();
   const location = useLocation();
 
@@ -48,14 +48,19 @@ const Sidebar = () => {
         Icon={<HomeIcon />}
         text="Home"
         active={location.pathname === "/"}
-        home={true}
+        path="/"
       />
       <SidebarOption Icon={<SearchIcon />} text="Explore" />
       <SidebarOption Icon={<NotificationsNoneIcon />} text="Notifications" />
       <SidebarOption Icon={<MailOutlineIcon />} text="Messages" />
       <SidebarOption Icon={<BookmarkBorderIcon />} text="Bookmarks" />
       <SidebarOption Icon={<ListAltIcon />} text="Lists" />
-      <SidebarOption Icon={<PermIdentityIcon />} text="Profile" />
+      <SidebarOption
+        Icon={<PermIdentityIcon />}
+        text="Profile"
+        active={location.pathname === "/profile"}
+        path="/profile"
+      />
       <SidebarOption Icon={<MoreHorizIcon />} text="More" />
 
       <Button variant="outlined" className="sidebar__tweet" fullWidth>
