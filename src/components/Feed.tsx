@@ -23,7 +23,7 @@ const Feed = () => {
       .onSnapshot((snapshot) =>
         setPosts(
           snapshot.docs.map((doc) => ({
-            id: doc.data().id,
+            id: doc.id,
             text: doc.data().text,
             image: doc.data().image,
             timestamp: doc.data().timestamp,

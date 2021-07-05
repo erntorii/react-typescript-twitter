@@ -7,6 +7,7 @@ import {
   Repeat,
 } from "@material-ui/icons";
 import "./Post.css";
+import { useHistory } from "react-router-dom";
 
 type Props = {
   postId: string;
@@ -17,7 +18,9 @@ type Props = {
   username: string;
 };
 
-const Post = ({ text, image, timestamp, avatar, username }: Props) => {
+const Post = ({ postId, text, image, timestamp, avatar, username }: Props) => {
+  const history = useHistory();
+
   return (
     <div className="post">
       <div className="post__avatar">
@@ -43,7 +46,10 @@ const Post = ({ text, image, timestamp, avatar, username }: Props) => {
           </div>
         )}
         <div className="post__footer">
-          <ChatBubbleOutline fontSize="small" />
+          <ChatBubbleOutline
+            fontSize="small"
+            onClick={() => history.push(`tweet/${postId}`)}
+          />
           <Repeat fontSize="small" />
           <FavoriteBorder fontSize="small" />
           <Publish fontSize="small" />

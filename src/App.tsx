@@ -10,6 +10,7 @@ import Feed from "./components/Feed";
 import Auth from "./components/Auth";
 import ResetPassword from "./components/ResetPassword";
 import Profile from "./components/Profile";
+import Thread from "./components/Thread";
 
 const App = () => {
   const user = useSelector(selectUser);
@@ -42,6 +43,9 @@ const App = () => {
           <Sidebar />
           <Route exact path="/">
             <Feed />
+          </Route>
+          <Route path="/tweet/:id">
+            <Thread />
           </Route>
           <Route path="/profile">
             <Profile />
