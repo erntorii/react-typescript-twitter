@@ -62,6 +62,7 @@ const TweetBox = () => {
 
     setTweetMsg("");
     setTweetImage(null);
+    setPrevImageUrl("");
   };
 
   return (
