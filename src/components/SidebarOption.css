@@ -10,7 +10,7 @@
   transition: color 100ms ease-out;
 }
 .sidebarOption > .MuiSvgIcon-root {
-  padding: 20px;
+  padding: 16px;
 }
 .sidebarOption > h2 {
   font-weight: 700;

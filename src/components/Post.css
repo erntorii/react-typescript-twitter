@@ -14,6 +14,12 @@
 }
 .post__footer * {
   cursor: pointer;
+  color: #4f4f4f;
+  padding: 6px;
+  border-radius: 50%;
+}
+.post__footer *:hover {
+  background-color: #e8f5fe;
 }
 .post__headerTime {
   font-weight: 600;

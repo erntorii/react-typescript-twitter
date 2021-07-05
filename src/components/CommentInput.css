@@ -1,57 +1,26 @@
-.tweetBox {
+.commentInput {
   padding-bottom: 10px;
   border-bottom: 8px solid var(--twitter-background);
   padding-right: 10px;
 }
-.tweetBox > form {
+.commentInput > form {
   display: flex;
   flex-direction: column;
 }
-.tweetBox__input {
+.commentInput__input {
   display: flex;
   padding: 20px;
 }
-.tweetBox__input > input {
+.commentInput__input > input {
   flex: 1;
   margin-left: 20px;
   font-size: 20px;
   border: none;
 }
-.tweetBox__input > input:focus {
+.commentInput__input > input:focus {
   outline: none;
 }
-.tweetBox__image {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.tweetBox__image > img {
-  border-radius: 20px;
-  max-height: 250px;
-}
-.tweetBox__image > span {
-  align-items: flex-start;
-  margin-left: 12px;
-  color: gray;
-}
-.tweetBox__image > span:hover {
-  cursor: pointer;
-}
-.tweetBox__button {
-  display: flex;
-  align-items: center;
-}
-.tweetBox__icon {
-  margin-left: 80px;
-  color: var(--twitter-color);
-}
-.tweetBox__icon:hover {
-  cursor: pointer;
-}
-.tweetBox__hiddenInput {
-  display: none;
-}
-.tweetBox__buttonEnabled {
+.commentInput__buttonEnabled {
   background-color: var(--twitter-color) !important;
   border: none !important;
   color: white !important;
@@ -61,7 +30,7 @@
   height: 45px !important;
   margin-left: auto !important;
 }
-.tweetBox__buttonDisabled {
+.commentInput__buttonDisabled {
   opacity: 0.5;
   background-color: var(--twitter-color) !important;
   border: none !important;

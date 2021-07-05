@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { db } from "../firebase";
 import { Avatar } from "@material-ui/core";
 import "./Thread.css";
+import CommentInput from "./CommentInput";
 
 const Tweet = () => {
   const { id } = useParams<Record<string, string | undefined>>();
@@ -60,6 +61,7 @@ const Tweet = () => {
           )}
         </div>
       </div>
+      <CommentInput />
     </div>
   );
 };

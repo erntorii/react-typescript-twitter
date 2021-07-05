@@ -44,7 +44,7 @@
 .thread__box {
   display: flex;
   align-items: flex-start;
-  border-bottom: 8px solid var(--twitter-background);
+  border-bottom: 1px solid var(--twitter-background);
 }
 .thread__headerTime {
   font-weight: 600;

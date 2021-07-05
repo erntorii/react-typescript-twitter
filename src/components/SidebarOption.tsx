@@ -20,7 +20,7 @@ const SidebarOption = ({ text, Icon, active, path }: Props) => {
       }}
     >
       {Icon}
-      <h2>{text}</h2>
+      <h4>{text}</h4>
     </div>
   );
 };
