@@ -58,7 +58,8 @@
   font-weight: 700 !important;
   text-transform: inherit !important;
   border-radius: 30px !important;
-  height: 45px !important;
+  width: 75px !important;
+  height: 40px !important;
   margin-left: auto !important;
 }
 .tweetBox__buttonDisabled {
