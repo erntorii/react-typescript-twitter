@@ -4,6 +4,15 @@ import { db } from "../firebase";
 import { Avatar } from "@material-ui/core";
 import "./Thread.css";
 import CommentInput from "./CommentInput";
+import Comment from "./Comment";
+
+type COMMENT = {
+  id: string;
+  avatar: string;
+  username: string;
+  text: string;
+  timestamp: any;
+};
 
 const Tweet = () => {
   const { id } = useParams<Record<string, string | undefined>>();
@@ -13,6 +22,15 @@ const Tweet = () => {
   const [timestamp, setTimestamp] = useState<any | null>(null);
   const [avatar, setAvatar] = useState("");
   const [username, setUsername] = useState("");
+  const [comments, setComments] = useState<COMMENT[]>([
+    {
+      id: "",
+      avatar: "",
+      username: "",
+      text: "",
+      timestamp: null,
+    },
+  ]);
 
   useEffect(() => {
     db.collection("posts")
@@ -28,6 +46,22 @@ const Tweet = () => {
       .catch((err) => {
         alert(err.mesage);
       });
+
+    db.collection("posts")
+      .doc(id)
+      .collection("comments")
+      .orderBy("timestamp", "asc")
+      .onSnapshot((snapshot) =>
+        setComments(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            avatar: doc.data().avatar,
+            username: doc.data().username,
+            text: doc.data().text,
+            timestamp: doc.data().timestamp,
+          }))
+        )
+      );
   }, [id]);
 
   return (
@@ -62,6 +96,15 @@ const Tweet = () => {
         </div>
       </div>
       <CommentInput />
+      {comments.map((comment) => (
+        <Comment
+          key={comment.id}
+          avatar={comment.avatar}
+          username={comment.username}
+          text={comment.text}
+          timestamp={comment.timestamp}
+        />
+      ))}
     </div>
   );
 };
