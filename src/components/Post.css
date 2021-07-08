@@ -5,12 +5,21 @@
 .post {
   display: flex;
   align-items: flex-start;
-  border-bottom: 1px solid var(--twitter-backgroung);
+  border-bottom: 1px solid var(--twitter-background);
 }
 .post__footer {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+}
+.post__footer * {
+  cursor: pointer;
+  color: #4f4f4f;
+  padding: 6px;
+  border-radius: 50%;
+}
+.post__footer *:hover {
+  background-color: #e8f5fe;
 }
 .post__headerTime {
   font-weight: 600;
