@@ -11,6 +11,7 @@ import {
   IconButton,
   TextField,
   Box,
+  Button,
   makeStyles,
 } from "@material-ui/core";
 
@@ -71,7 +72,7 @@ const Profile = () => {
       </div>
       <div className="profile__body">
         <Box textAlign="center">
-          <IconButton className="profile__iconButton">
+          <IconButton>
             <label>
               <Avatar className={classes.avatarSize} src={prevAvatarUrl} />
               <input
@@ -92,7 +93,7 @@ const Profile = () => {
           onChange={(e) => SetUsername(e.target.value)}
         />
         <div className="profile__button">
-          <button
+          <Button
             className={
               username ? "profile__buttonEnabled" : "profile__buttonDisabled"
             }
@@ -102,7 +103,7 @@ const Profile = () => {
             }
           >
             Save
-          </button>
+          </Button>
         </div>
       </div>
     </div>
