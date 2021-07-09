@@ -4,30 +4,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUser, updateUserProfile } from "../features/userSlice";
 import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
+import "./Profile.css";
 
 import {
   Avatar,
   IconButton,
   TextField,
-  Button,
-  Typography,
   Box,
-  Container,
   makeStyles,
-  Link,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
   avatarSize: {
     width: "120px",
     height: "120px",
@@ -35,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
   hiddenInput: {
     textAlign: "center",
     display: "none",
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
   },
 }));
 
@@ -80,51 +64,48 @@ const Profile = () => {
   const history = useHistory();
 
   return (
-    <Container maxWidth="xs">
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Profile Settings
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Box textAlign="center">
-            <IconButton>
-              <label>
-                <Avatar className={classes.avatarSize} src={prevAvatarUrl} />
-                <input
-                  type="file"
-                  className={classes.hiddenInput}
-                  onChange={onChangeImageHandler}
-                />
-              </label>
-            </IconButton>
-          </Box>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            label="Username"
-            name="username"
-            value={username}
-            onChange={(e) => SetUsername(e.target.value)}
-          />
-          <Button
+    <div className="profile">
+      <div className="profile__header">
+        <button onClick={() => history.goBack()}>←</button>
+        <h2>Profile</h2>
+      </div>
+      <div className="profile__body">
+        <Box textAlign="center">
+          <IconButton className="profile__iconButton">
+            <label>
+              <Avatar className={classes.avatarSize} src={prevAvatarUrl} />
+              <input
+                className={classes.hiddenInput}
+                type="file"
+                onChange={onChangeImageHandler}
+              />
+            </label>
+          </IconButton>
+        </Box>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          label="Username"
+          name="username"
+          value={username}
+          onChange={(e) => SetUsername(e.target.value)}
+        />
+        <div className="profile__button">
+          <button
+            className={
+              username ? "profile__buttonEnabled" : "profile__buttonDisabled"
+            }
             disabled={!username}
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
             onClick={() =>
               updateProfile().then(() => alert("Profile updated."))
             }
           >
             Save
-          </Button>
-          <Link onClick={() => history.goBack()} variant="body2">
-            Back
-          </Link>
-        </form>
+          </button>
+        </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
