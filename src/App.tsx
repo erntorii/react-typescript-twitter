@@ -11,6 +11,7 @@ import Auth from "./components/Auth";
 import ResetPassword from "./components/ResetPassword";
 import Profile from "./components/Profile";
 import Thread from "./components/Thread";
+import Widget from "./components/Widget";
 
 const App = () => {
   const user = useSelector(selectUser);
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/profile">
             <Profile />
           </Route>
+          <Widget />
         </div>
       ) : (
         <>
